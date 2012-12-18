@@ -1,7 +1,6 @@
-
 inherit latex-package
 
-#DESCRIPTION="LaTeX support for Adobe's Pro opentype font Minion Pro"
+DESCRIPTION="LaTeX support for Adobe's Pro opentype font ${PN}"
 HOMEPAGE="https://github.com/sebschub/FontPro"
 SRC_URI="https://github.com/sebschub/FontPro/archive/${PN}v${PV}.tar.gz"
 

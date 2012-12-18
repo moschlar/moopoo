@@ -6,8 +6,6 @@ EAPI=4
 
 inherit FontPro
 
-DESCRIPTION="LaTeX support for Adobe's Pro opentype font Minion Pro"
-
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
