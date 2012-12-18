@@ -1,0 +1,3 @@
+move g-ctan/fontaxes dev-tex/fontaxes
+move g-ctan/mnsymbol dev-tex/mnsymbol
+move g-ctan/mdsymbol dev-tex/mdsymbol
