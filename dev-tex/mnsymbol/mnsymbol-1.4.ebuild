@@ -7,9 +7,9 @@ inherit latex-package
 
 DESCRIPTION="Mathematical symbol font for Adobe MinionPro."
 HOMEPAGE="http://ctan.tug.org/pkg/mnsymbol"
-SRC_URI="http://mirror.ctan.org/systems/texlive/tlnet//archive/mnsymbol.tar.xz -> mnsymbol-1.4.tar.xz
-	source? ( http://mirror.ctan.org/systems/texlive/tlnet//archive/mnsymbol.source.tar.xz -> mnsymbol-1.4.source.tar.xz )
-	doc? ( http://mirror.ctan.org/systems/texlive/tlnet//archive/mnsymbol.doc.tar.xz -> mnsymbol-1.4.doc.tar.xz )"
+SRC_URI="http://mirror.ctan.org/systems/texlive/tlnet/archive/mnsymbol.tar.xz -> mnsymbol-1.4.tar.xz
+	source? ( http://mirror.ctan.org/systems/texlive/tlnet/archive/mnsymbol.source.tar.xz -> mnsymbol-1.4.source.tar.xz )
+	doc? ( http://mirror.ctan.org/systems/texlive/tlnet/archive/mnsymbol.doc.tar.xz -> mnsymbol-1.4.doc.tar.xz )"
 LICENSE="OFL"
 
 SLOT="0"
