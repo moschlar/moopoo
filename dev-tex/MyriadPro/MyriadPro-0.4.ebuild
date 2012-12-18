@@ -13,7 +13,7 @@ SRC_URI="https://github.com/sebschub/FontPro/archive/${PN}v${PV}.tar.gz"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="doc"
 
 DEPEND="app-text/acroread
 	dev-texlive/texlive-genericextra
@@ -37,4 +37,5 @@ src_compile() {
 src_install() {
 	./scripts/install ${D}/${TEXMF}
 	rm ${D}/${TEXMF}/ls-R
+	use doc && dodoc ./doc/MyriadPro.pdf
 }
