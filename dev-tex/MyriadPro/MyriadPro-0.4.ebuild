@@ -23,19 +23,21 @@ RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/FontPro-${PN}v${PV}
 
+FONTDIR="/opt/Adobe/Reader9/Resource/Font/"
+
 src_prepare() {
 	mkdir $S/otf
-	for i in `find /opt/Adobe/Reader9/Resource/Font/ -name 'MyriadPro*'`; do
+	for i in `find ${FONTDIR} -name "${PN}*.otf"`; do
 		cp $i $S/otf
 	done
 }
 
 src_compile() {
-	./scripts/makeall MyriadPro
+	./scripts/makeall ${PN}
 }
 
 src_install() {
 	./scripts/install ${D}/${TEXMF}
 	rm ${D}/${TEXMF}/ls-R
-	use doc && dodoc ./doc/MyriadPro.pdf
+	use doc && dodoc ./tex/${PN}.pdf
 }
