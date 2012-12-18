@@ -9,8 +9,10 @@ LICENSE=""
 IUSE="doc"
 
 DEPEND="app-text/acroread
-	dev-texlive/texlive-genericextra
-	dev-tex/fontaxes"
+	app-text/lcdf-typetools
+	app-text/texlive-core
+	dev-tex/fontaxes
+	dev-texlive/texlive-genericextra"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/FontPro-${PN}v${PV}
