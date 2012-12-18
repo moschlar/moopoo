@@ -21,7 +21,6 @@ RDEPEND=""
 
 S=${WORKDIR}
 
-# Can go with EAPI=3
 src_unpack() {
 	for i in ${A}
 	do
@@ -31,5 +30,5 @@ src_unpack() {
 
 src_install() {
 	dodir /usr/share/texmf-site/
-	cp -R "${S}"/* "${D}"//usr/share/texmf-site//
+	cp -R "${S}"/* "${D}"/usr/share/texmf-site/
 }

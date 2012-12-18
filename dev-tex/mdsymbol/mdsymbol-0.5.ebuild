@@ -30,5 +30,5 @@ src_unpack() {
 
 src_install() {
 	dodir /usr/share/texmf-site/
-	cp -R "${S}"/* "${D}"//usr/share/texmf-site//
+	cp -R "${S}"/* "${D}"/usr/share/texmf-site/
 }
