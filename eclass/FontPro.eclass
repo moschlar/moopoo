@@ -16,8 +16,8 @@ SRC_URI="https://github.com/sebschub/FontPro/archive/${PN}v${PV}.tar.gz
 
 # FontPro does not have any particular license so we just stick with the Adobe license
 LICENSE="${ACROREAD_LICENSE}"
-
 IUSE="doc +pack"
+RESTRICT="mirror bindist"
 
 # dev-texlive/texlive-genericextra contains fltpoint.sty
 DEPEND="app-text/lcdf-typetools

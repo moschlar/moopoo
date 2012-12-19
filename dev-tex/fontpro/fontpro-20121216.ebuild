@@ -23,6 +23,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc +minionpro +myriadpro +pack"
 REQUIRED_USE="|| ( minionpro myriadpro )"
+RESTRICT="mirror bindist"
 
 # dev-texlive/texlive-genericextra contains fltpoint.sty
 DEPEND="app-text/lcdf-typetools
