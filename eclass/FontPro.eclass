@@ -58,7 +58,7 @@ FontPro_src_compile() {
 			# The following might not work reliable for otf files *not* from the Adobe Reader package,
 			# but that doesn't bother us here at the moment
 			FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
-			OPTS="--pack=\"${S}/scripts/${PN}-glyph-list-${FONT_VER}\""
+			OPTS="--pack=${S}/scripts/${PN}-glyph-list-${FONT_VER}"
 		else
 			ewarn "Could not determine font version - not packing glyphs"
 		fi
