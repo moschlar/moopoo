@@ -12,6 +12,8 @@ SRC_URI="http://mirror.ctan.org/systems/texlive/tlnet/archive/mnsymbol.tar.xz ->
 	doc? ( http://mirror.ctan.org/systems/texlive/tlnet/archive/mnsymbol.doc.tar.xz -> mnsymbol-1.4.doc.tar.xz )"
 LICENSE="OFL"
 
+MY_PN="MnSymbol"
+
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -31,4 +33,11 @@ src_unpack() {
 src_install() {
 	dodir /usr/share/texmf-site/
 	cp -R "${S}"/* "${D}"/usr/share/texmf-site/
+}
+
+pkg_postinst() {
+	elog
+	elog "You have to enable the map for the installed font by using"
+	elog "    updmap-sys --enable MixedMap ${MY_PN}.map"
+	elog
 }

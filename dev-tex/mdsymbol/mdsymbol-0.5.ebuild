@@ -32,3 +32,10 @@ src_install() {
 	dodir /usr/share/texmf-site/
 	cp -R "${S}"/* "${D}"/usr/share/texmf-site/
 }
+
+pkg_postinst() {
+	elog
+	elog "You have to enable the map for the installed font by using"
+	elog "    updmap-sys --enable MixedMap ${PN}.map"
+	elog
+}

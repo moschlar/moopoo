@@ -17,17 +17,24 @@ SRC_URI="https://github.com/sebschub/FontPro/archive/${PN}v${PV}.tar.gz
 # FontPro does not have any particular license so we just stick with the Adobe license
 LICENSE="${ACROREAD_LICENSE}"
 
-IUSE="doc"
+IUSE="doc -pack"
 
 # dev-texlive/texlive-genericextra contains fltpoint.sty
 DEPEND="app-text/lcdf-typetools
 	app-text/texlive-core
 	dev-tex/fontaxes
-	dev-texlive/texlive-genericextra"
+	dev-texlive/texlive-genericextra
+	!dev-tex/fontpro"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/FontPro-${PN}v${PV}"
 ACROREAD_S="${WORKDIR}/AdobeReader"
+
+FontPro_pkg_pretend() {
+	if use pack; then
+		ewarn "You have enabled glyph packing, this may produce corrupted font files"
+	fi
+}
 
 FontPro_src_unpack() {
 	default_src_unpack
@@ -44,12 +51,20 @@ FontPro_src_prepare() {
 }
 
 FontPro_src_compile() {
-	local FONT_VER
-	# The following might not work reliable for otf files *not* from the Adobe Reader package,
-	# but that doesn't bother us here at the moment
-	FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+	local FONT_VER OPTS
 
-	./scripts/makeall ${PN} --pack="${S}/scripts/${PN}-glyph-list-${FONT_VER}" || die "makeall failed"
+	if use pack; then
+		if [ -f "${S}/otf/${PN}-Regular.otf" ]; then
+			# The following might not work reliable for otf files *not* from the Adobe Reader package,
+			# but that doesn't bother us here at the moment
+			FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+			OPTS="--pack=\"${S}/scripts/${PN}-glyph-list-${FONT_VER}\""
+		else
+			ewarn "Could not determine font version - not packing glyphs"
+		fi
+	fi
+
+	./scripts/makeall ${PN} ${OPTS} || die "makeall failed"
 }
 
 FontPro_src_install() {
@@ -57,7 +72,19 @@ FontPro_src_install() {
 	# Prevent overwriting the already installed ls-R file on merge
 	rm "${D}/${TEXMF}/ls-R"
 
-	use doc && dodoc ./tex/${PN}.pdf
+	if use doc; then
+		# Inspired by latex-package.eclass
+		insinto /usr/share/doc/${PF}
+		doins "${S}/tex/${PN}.pdf"
+		dosym "/usr/share/doc/${PF}/${PN}.pdf" "${TEXMF}/doc/latex/${PN}/${PN}.pdf"
+	fi
 }
 
-EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install
+FontPro_pkg_postinst() {
+	elog
+	elog "You have to enable the map for the installed font by using"
+	elog "    updmap-sys --enable MixedMap ${PN}.map"
+	elog
+}
+
+EXPORT_FUNCTIONS pkg_pretend src_unpack src_prepare src_compile src_install pkg_postinst
