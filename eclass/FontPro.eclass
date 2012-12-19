@@ -31,19 +31,21 @@ FontPro_src_unpack() {
 }
 
 FontPro_src_prepare() {
-	mkdir $S/otf
+	mkdir "$S/otf"
 	for i in `find "${ACROREAD_S}/Adobe/Reader9/Resource/Font/" -name "${PN}*.otf"`; do
-		cp $i $S/otf
+		cp "$i" "$S/otf"
 	done
 }
 
 FontPro_src_compile() {
-	./scripts/makeall ${PN}
+	local FONT_VER
+	FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+	./scripts/makeall ${PN} --pack="${S}/scripts/${PN}-glyph-list-${FONT_VER}"
 }
 
 FontPro_src_install() {
-	./scripts/install ${D}/${TEXMF}
-	rm ${D}/${TEXMF}/ls-R
+	./scripts/install "${D}/${TEXMF}"
+	rm "${D}/${TEXMF}/ls-R"
 	use doc && dodoc ./tex/${PN}.pdf
 }
 
