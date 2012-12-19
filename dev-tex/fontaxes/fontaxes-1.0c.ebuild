@@ -1,4 +1,5 @@
-# Distributed under the terms of the GNU General Public License v3.
+# Copyright 1999-2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
@@ -10,7 +11,7 @@ HOMEPAGE="http://ctan.tug.org/pkg/fontaxes"
 SRC_URI="http://mirror.ctan.org/systems/texlive/tlnet/archive/fontaxes.tar.xz -> fontaxes-1.0c.tar.xz
 	source? ( http://mirror.ctan.org/systems/texlive/tlnet/archive/fontaxes.source.tar.xz -> fontaxes-1.0c.source.tar.xz )
 	doc? ( http://mirror.ctan.org/systems/texlive/tlnet/archive/fontaxes.doc.tar.xz -> fontaxes-1.0c.doc.tar.xz )"
-LICENSE="LPPL-1.21.3"
+LICENSE="LPPL-1.3c"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
