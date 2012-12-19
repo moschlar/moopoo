@@ -34,7 +34,7 @@ FontPro_src_unpack() {
 	default_src_unpack
 
 	cd "${ACROREAD_S}" || die "cd failed"
-	tar xf COMMON.TAR || die "Failed to unpack COMMON.TAR."
+	tar xf COMMON.TAR Adobe/Reader9/Resource/Font || die "Failed to unpack COMMON.TAR."
 }
 
 FontPro_src_prepare() {
