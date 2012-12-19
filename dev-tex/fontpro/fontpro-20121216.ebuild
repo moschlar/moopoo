@@ -19,7 +19,6 @@ SRC_URI="https://github.com/sebschub/FontPro/archive/${GIT_REV}.tar.gz -> ${P}.t
 
 # FontPro does not have any particular license so we just stick with the Adobe license
 LICENSE="${ACROREAD_LICENSE}"
-
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc +minionpro +myriadpro +pack"
@@ -36,8 +35,8 @@ DEPEND="app-text/lcdf-typetools
 	!dev-tex/MinionPro"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/FontPro-${GIT_REV}"
-ACROREAD_S="${WORKDIR}/AdobeReader"
+S=${WORKDIR}/FontPro-${GIT_REV}
+ACROREAD_S=${WORKDIR}/AdobeReader
 
 src_unpack() {
 	default_src_unpack
@@ -48,7 +47,7 @@ src_unpack() {
 
 prepare_font() {
 	local SS
-	SS="${WORKDIR}/${1}"
+	SS=${WORKDIR}/${1}
 	cp -r "${S}" "${SS}"
 
 	# Copy otf files from Adobe Reader
@@ -64,7 +63,7 @@ src_prepare() {
 
 compile_font() {
 	local SS FONT_VER OPTS
-	SS="${WORKDIR}/${1}"
+	SS=${WORKDIR}/${1}
 	cd "${SS}"
 
 	if use pack; then
@@ -87,7 +86,7 @@ src_compile() {
 
 install_font() {
 	local SS
-	SS="${WORKDIR}/${1}"
+	SS=${WORKDIR}/${1}
 	cd "${SS}"
 
 	./scripts/install "${D}/${TEXMF}" || die "install failed"
@@ -96,7 +95,7 @@ install_font() {
 
 	if use doc; then
 		# Inspired by latex-package.eclass
-		insinto /usr/share/doc/${PF}
+		insinto "/usr/share/doc/${PF}"
 		doins "${SS}/tex/${1}.pdf"
 		dosym "/usr/share/doc/${PF}/${1}.pdf" "${TEXMF}/doc/latex/${1}/${1}.pdf"
 	fi

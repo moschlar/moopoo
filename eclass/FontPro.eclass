@@ -27,8 +27,8 @@ DEPEND="app-text/lcdf-typetools
 	!dev-tex/fontpro"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/FontPro-${PN}v${PV}"
-ACROREAD_S="${WORKDIR}/AdobeReader"
+S=${WORKDIR}/FontPro-${PN}v${PV}
+ACROREAD_S=${WORKDIR}/AdobeReader
 
 FontPro_src_unpack() {
 	default_src_unpack
@@ -68,7 +68,7 @@ FontPro_src_install() {
 
 	if use doc; then
 		# Inspired by latex-package.eclass
-		insinto /usr/share/doc/${PF}
+		insinto "/usr/share/doc/${PF}"
 		doins "${S}/tex/${PN}.pdf"
 		dosym "/usr/share/doc/${PF}/${PN}.pdf" "${TEXMF}/doc/latex/${PN}/${PN}.pdf"
 	fi
