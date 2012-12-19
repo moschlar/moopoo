@@ -33,27 +33,26 @@ ACROREAD_S="${WORKDIR}/AdobeReader"
 FontPro_src_unpack() {
 	default_src_unpack
 
-	cd "${ACROREAD_S}"
+	cd "${ACROREAD_S}" || die "cd failed"
 	tar xf COMMON.TAR || die "Failed to unpack COMMON.TAR."
 }
 
 FontPro_src_prepare() {
 	# Copy otf files from Adobe Reader
-	mkdir "$S/otf"
-	for i in `find "${ACROREAD_S}/Adobe/Reader9/Resource/Font/" -name "${PN}*.otf"`; do
-		cp "$i" "$S/otf"
-	done
+	mkdir "$S/otf" || die "mkdir failed"
+	find "${ACROREAD_S}/Adobe/Reader9/Resource/Font/" -name "${PN}*.otf"\
+		-exec cp '{}' "${S}/otf" ';' || die "cp failed"
 }
 
 FontPro_src_compile() {
 	# This is not reliable, so we use a static font version number in the meantime
 	#local FONT_VER
 	#FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
-	./scripts/makeall ${PN} --pack="${S}/scripts/${PN}-glyph-list-${FONT_VER}"
+	./scripts/makeall ${PN} --pack="${S}/scripts/${PN}-glyph-list-${FONT_VER}" || die "makeall failed"
 }
 
 FontPro_src_install() {
-	./scripts/install "${D}/${TEXMF}"
+	./scripts/install "${D}/${TEXMF}" || die "install failed"
 	# Prevent overwriting the already installed ls-R file on merge
 	rm "${D}/${TEXMF}/ls-R"
 	use doc && dodoc ./tex/${PN}.pdf
