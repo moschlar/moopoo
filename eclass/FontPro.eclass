@@ -17,7 +17,7 @@ SRC_URI="https://github.com/sebschub/FontPro/archive/${PN}v${PV}.tar.gz
 # FontPro does not have any particular license so we just stick with the Adobe license
 LICENSE="${ACROREAD_LICENSE}"
 
-IUSE="doc -pack"
+IUSE="doc +pack"
 
 # dev-texlive/texlive-genericextra contains fltpoint.sty
 DEPEND="app-text/lcdf-typetools
@@ -30,12 +30,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/FontPro-${PN}v${PV}"
 ACROREAD_S="${WORKDIR}/AdobeReader"
 
-FontPro_pkg_pretend() {
-	if use pack; then
-		ewarn "You have enabled glyph packing, this may produce corrupted font files"
-	fi
-}
-
 FontPro_src_unpack() {
 	default_src_unpack
 
@@ -45,7 +39,7 @@ FontPro_src_unpack() {
 
 FontPro_src_prepare() {
 	# Copy otf files from Adobe Reader
-	mkdir "$S/otf" || die "mkdir failed"
+	mkdir "${S}/otf" || die "mkdir failed"
 	find "${ACROREAD_S}/Adobe/Reader9/Resource/Font/" -name "${PN}*.otf"\
 		-exec cp '{}' "${S}/otf" ';' || die "cp failed"
 }
@@ -87,4 +81,4 @@ FontPro_pkg_postinst() {
 	elog
 }
 
-EXPORT_FUNCTIONS pkg_pretend src_unpack src_prepare src_compile src_install pkg_postinst
+EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install pkg_postinst
