@@ -45,9 +45,11 @@ FontPro_src_prepare() {
 }
 
 FontPro_src_compile() {
-	# This is not reliable, so we use a static font version number in the meantime
-	#local FONT_VER
-	#FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+	local FONT_VER
+	# The following might not work reliable for otf files *not* from the Adobe Reader package,
+	# but that doesn't bother us here at the moment
+	FONT_VER=$(otfinfo -v "${S}/otf/${PN}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+
 	./scripts/makeall ${PN} --pack="${S}/scripts/${PN}-glyph-list-${FONT_VER}" || die "makeall failed"
 }
 
@@ -55,6 +57,7 @@ FontPro_src_install() {
 	./scripts/install "${D}/${TEXMF}" || die "install failed"
 	# Prevent overwriting the already installed ls-R file on merge
 	rm "${D}/${TEXMF}/ls-R"
+
 	use doc && dodoc ./tex/${PN}.pdf
 }
 

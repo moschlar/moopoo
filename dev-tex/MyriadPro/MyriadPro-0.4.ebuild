@@ -11,5 +11,3 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND="dev-tex/mdsymbol"
 RDEPEND="${DEPEND}"
-
-FONT_VER="2.062"
