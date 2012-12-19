@@ -1,7 +1,6 @@
 # This eclass contains all common steps which have to be performed to
 # get the otf files and generate the LaTeX font definitions for them.
-# An ebuild should only specify the correct font name as $PN and the font
-# version as $FONT_VER
+# An ebuild should only specify the correct font name as $PN
 
 inherit eutils latex-package
 
