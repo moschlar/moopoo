@@ -107,17 +107,23 @@ install_font() {
 }
 
 src_install() {
-	use minionpro && install_font MinionPro && echo "MixedMap MinionPro.map" >> "${T}/55fontpro.cfg"
-	use myriadpro && install_font MyriadPro && echo "MixedMap MyriadPro.map" >> "${T}/55fontpro.cfg"
+	if use minionpro; then
+		install_font MinionPro
+		echo "MixedMap MinionPro.map" >> "${T}/${PN}.cfg"
+	fi
+
+	if use myriadpro; then
+		install_font MyriadPro
+		echo "MixedMap MyriadPro.map" >> "${T}/${PN}.cfg"
+	fi
+
 	insinto /etc/texmf/updmap.d
-	doins "${T}/55fontpro.cfg"
+	doins "${T}/${PN}.cfg"
 }
 
 pkg_postinst() {
 	latex-package_pkg_postinst
 
-	elog
 	use minionpro && elog "To use MinionPro, put \\usepackage{MinionPro} in the preamble of your LaTeX document."
 	use myriadpro && elog "To use MyriadPro, put \\usepackage{MyriadPro} in the preamble of your LaTeX document."
-	elog
 }
