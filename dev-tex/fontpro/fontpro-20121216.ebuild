@@ -8,8 +8,8 @@ inherit vcs-snapshot latex-package
 
 ACROREAD_LICENSE="Adobe"
 ACROREAD_PV="9.5.1"
-ACROREAD_P="AdbeRdr${ACROREAD_PV}-1_i486linux_enu"
-ACROREAD_URI="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${ACROREAD_PV}/enu/${ACROREAD_P}.tar.bz2"
+ACROREAD_F="AdbeRdr${ACROREAD_PV}-1_i486linux_enu"
+ACROREAD_URI="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${ACROREAD_PV}/enu/${ACROREAD_F}.tar.bz2"
 
 DESCRIPTION="LaTeX support for Adobe's Pro opentype fonts Minion Pro, Myriad Pro, Cronos Pro and possibly more"
 HOMEPAGE="https://github.com/sebschub/FontPro"
@@ -34,13 +34,11 @@ DEPEND="app-text/lcdf-typetools
 	!dev-tex/MinionPro"
 RDEPEND="${DEPEND}"
 
-ACROREAD_S=${WORKDIR}/${ACROREAD_P}
-
 src_unpack() {
 	vcs-snapshot_src_unpack
 
-	cd "${ACROREAD_S}" || die "cd failed"
-	tar -xf COMMON.TAR Adobe/Reader9/Resource/Font || die "Failed to unpack COMMON.TAR."
+	tar -xf "${WORKDIR}/${ACROREAD_F}/COMMON.TAR" Adobe/Reader9/Resource/Font \
+		|| die "Failed to unpack COMMON.TAR."
 }
 
 prepare_font() {
@@ -52,7 +50,7 @@ prepare_font() {
 
 	# Copy otf files from Adobe Reader
 	mkdir "${SS}/otf" || die "mkdir failed"
-	find "${ACROREAD_S}/Adobe/Reader9/Resource/Font/" -name "${1}*.otf"\
+	find "${WORKDIR}/Adobe/Reader9/Resource/Font/" -name "${1}*.otf" \
 		-exec cp '{}' "${SS}/otf" ';' || die "cp failed"
 }
 
@@ -72,7 +70,8 @@ compile_font() {
 		if [ -f "${SS}/otf/${1}-Regular.otf" ]; then
 			# The following might not work reliable for otf files *not* from the Adobe Reader package,
 			# but that doesn't bother us here at the moment
-			FONT_VER=$(otfinfo -v "${SS}/otf/${1}-Regular.otf" | sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
+			FONT_VER=$(otfinfo -v "${SS}/otf/${1}-Regular.otf" \
+				| sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
 			OPTS="--pack=${SS}/scripts/${1}-glyph-list-${FONT_VER}"
 		else
 			ewarn "Could not determine font version - not packing glyphs"
