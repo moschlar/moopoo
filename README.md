@@ -16,7 +16,7 @@ the corresponding ebuilds for **MyriadPro** and **MinionPro** are the most aweso
 There are currently two ways to install them:
 
 - Using the ebuilds `dev-tex/MyriadPro` and `dev-tex/MinionPro` each standing alone
-- Using the ebuild `dev-tex/fontpro` which uses USE flags to determine which font(s) to install
+- Using the ebuild `dev-tex/fontpro` which uses USE flags to determine which font(s) to install **(recommended)**
 
 ## Using this overlay
 
