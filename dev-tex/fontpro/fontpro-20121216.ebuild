@@ -108,3 +108,10 @@ src_install() {
 	insinto /etc/texmf/updmap.d
 	doins "${T}/55fontpro.cfg"
 }
+
+pkg_postinst() {
+	elog
+	use minionpro && elog "To use MinionPro, put \\usepackage{MinionPro} in the preamble of your LaTeX document."
+	use myriadpro && elog "To use MyriadPro, put \\usepackage{MyriadPro} in the preamble of your LaTeX document."
+	elog
+}
