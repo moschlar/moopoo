@@ -44,14 +44,14 @@ src_unpack() {
 prepare_font() {
 	einfo "Preparing ${1}..."
 
-	local SS
-	SS=${WORKDIR}/${1}
-	cp -r "${S}" "${SS}" || die "cp failed"
+	local my_s
+	my_s=${WORKDIR}/${1}
+	cp -r "${S}" "${my_s}" || die "cp failed"
 
 	# Copy otf files from Adobe Reader
-	mkdir "${SS}/otf" || die "mkdir failed"
+	mkdir "${my_s}/otf" || die "mkdir failed"
 	find "${WORKDIR}/Adobe/Reader9/Resource/Font/" -name "${1}*.otf" \
-		-exec cp '{}' "${SS}/otf" ';' || die "cp failed"
+		-exec cp '{}' "${my_s}/otf" ';' || die "cp failed"
 }
 
 src_prepare() {
@@ -62,22 +62,22 @@ src_prepare() {
 compile_font() {
 	einfo "Compiling ${1}..."
 
-	local SS FONT_VER OPTS
-	SS=${WORKDIR}/${1}
-	cd "${SS}" || die "cd failed"
+	local my_s font_ver opts
+	my_s=${WORKDIR}/${1}
+	cd "${my_s}" || die "cd failed"
 
 	if use pack; then
-		if [ -f "${SS}/otf/${1}-Regular.otf" ]; then
+		if [ -f "${my_s}/otf/${1}-Regular.otf" ]; then
 			# The following might not work reliable for otf files *not* from the Adobe Reader package,
 			# but that doesn't bother us here at the moment
-			FONT_VER=$(otfinfo -v "${SS}/otf/${1}-Regular.otf" \
+			font_ver=$(otfinfo -v "${my_s}/otf/${1}-Regular.otf" \
 				| sed -e 's/^Version \([[:digit:]]*\.[[:digit:]]*\);.*$/\1/')
-			OPTS="--pack=${SS}/scripts/${1}-glyph-list-${FONT_VER}"
+			opts="--pack=${my_s}/scripts/${1}-glyph-list-${font_ver}"
 		else
 			ewarn "Could not determine font version - not packing glyphs"
 		fi
 	fi
-	./scripts/makeall ${1} ${OPTS} || die "makeall failed"
+	./scripts/makeall ${1} ${opts} || die "makeall failed"
 }
 
 src_compile() {
@@ -88,9 +88,9 @@ src_compile() {
 install_font() {
 	einfo "Installing ${1}..."
 
-	local SS
-	SS=${WORKDIR}/${1}
-	cd "${SS}" || die "cd failed"
+	local my_s
+	my_s=${WORKDIR}/${1}
+	cd "${my_s}" || die "cd failed"
 
 	./scripts/install "${D}/${TEXMF}" || die "install failed"
 
