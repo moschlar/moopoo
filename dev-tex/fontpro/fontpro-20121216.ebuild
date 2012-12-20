@@ -6,7 +6,6 @@ EAPI=5
 
 inherit vcs-snapshot latex-package
 
-# All acroread related stuff is gracefully stolen from app-text/acroread/acroread-9.5.1-r1.ebuild
 ACROREAD_LICENSE="Adobe"
 ACROREAD_PV="9.5.1"
 ACROREAD_P="AdbeRdr${ACROREAD_PV}-1_i486linux_enu"
@@ -14,8 +13,7 @@ ACROREAD_URI="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${ACROREAD_P
 
 DESCRIPTION="LaTeX support for Adobe's Pro opentype fonts Minion Pro, Myriad Pro, Cronos Pro and possibly more"
 HOMEPAGE="https://github.com/sebschub/FontPro"
-GIT_REV="9842165801360eebb1b792551dd3e14f3063d9b2"
-SRC_URI="https://github.com/sebschub/FontPro/archive/${GIT_REV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://github.com/sebschub/FontPro/archive/9842165801360eebb1b792551dd3e14f3063d9b2.tar.gz -> ${P}.tar.gz
 	${ACROREAD_URI}"
 
 LICENSE="public-domain ${ACROREAD_LICENSE}"
@@ -36,7 +34,6 @@ DEPEND="app-text/lcdf-typetools
 	!dev-tex/MinionPro"
 RDEPEND="${DEPEND}"
 
-#S=${WORKDIR}/FontPro-${GIT_REV}
 ACROREAD_S=${WORKDIR}/${ACROREAD_P}
 
 src_unpack() {
