@@ -21,7 +21,7 @@ S=${WORKDIR}
 
 src_install() {
 	# latex-package_src_doinstall doesn't work here,
-	# because it excepts all files in $S ('-maxdepth 1')
+	# because it expects all files in $S ('-maxdepth 1')
 	insinto /usr/share/texmf-site/
 	doins -r *
 
