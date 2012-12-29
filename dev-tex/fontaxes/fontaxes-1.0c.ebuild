@@ -20,6 +20,7 @@ IUSE="doc source"
 S=${WORKDIR}
 
 src_install() {
-	insinto ${TEXMF}
-	doins -r *
+	# We move all files to the root directory and let the eclass do the magic
+	find "${S}" -mindepth 2 -type f -execdir mv '{}' "${S}" ';'
+	latex-package_src_install
 }

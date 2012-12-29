@@ -20,10 +20,9 @@ IUSE="doc source"
 S=${WORKDIR}
 
 src_install() {
-	# latex-package_src_doinstall doesn't work here,
-	# because it expects all files in $S ('-maxdepth 1')
-	insinto /usr/share/texmf-site/
-	doins -r *
+	# We move all files to the root directory and let the eclass do the magic
+	find "${S}" -mindepth 2 -type f -execdir mv '{}' "${S}" ';'
+	latex-package_src_install
 
 	echo "MixedMap ${PN}.map" >> "${T}/${PN}.cfg"
 	insinto /etc/texmf/updmap.d
