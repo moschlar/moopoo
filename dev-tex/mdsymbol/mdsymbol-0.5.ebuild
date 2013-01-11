@@ -21,10 +21,10 @@ S=${WORKDIR}
 
 src_install() {
 	# We move all files to the root directory and let the eclass do the magic
-	find "${S}" -mindepth 2 -type f -execdir mv '{}' "${S}" ';'
+	find "${S}" -mindepth 2 -type f -execdir mv '{}' "${S}" ';' || die
 	latex-package_src_install
 
-	echo "MixedMap ${PN}.map" >> "${T}/${PN}.cfg"
+	echo "MixedMap ${PN}.map" >> "${T}/${PN}.cfg" || die
 	insinto /etc/texmf/updmap.d
 	doins "${T}/${PN}.cfg"
 }

@@ -11,9 +11,11 @@ ACROREAD_PV="9.5.1"
 ACROREAD_F="AdbeRdr${ACROREAD_PV}-1_i486linux_enu"
 ACROREAD_URI="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${ACROREAD_PV}/enu/${ACROREAD_F}.tar.bz2"
 
+GIT_REV="0a71f88df83962518ba16a6111743522642c9fba"
+
 DESCRIPTION="LaTeX support for Adobe's Pro opentype fonts Minion Pro, Myriad Pro, Cronos Pro and possibly more"
 HOMEPAGE="https://github.com/sebschub/FontPro"
-SRC_URI="https://github.com/sebschub/FontPro/archive/0a71f88df83962518ba16a6111743522642c9fba.tar.gz -> ${P}.tar.gz
+SRC_URI="https://github.com/sebschub/FontPro/archive/${GIT_REV}.tar.gz -> ${P}.tar.gz
 	${ACROREAD_URI}"
 
 LICENSE="public-domain ${ACROREAD_LICENSE}"
