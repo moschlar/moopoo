@@ -17,7 +17,7 @@ SRC_URI="https://github.com/petervanderdoes/gitflow/archive/${PV}.tar.gz -> ${P}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="bash-completion"
 
 PDEPEND="!dev-vcs/git-flow"
