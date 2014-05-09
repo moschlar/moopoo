@@ -10,13 +10,9 @@
 
 ### FontPro
 
-At the moment, the eclass for using **[FontPro](https://github.com/sebschub/FontPro)** and
-the corresponding ebuilds for **MyriadPro** and **MinionPro** are the most awesome features in this overlay.
+The most awesome ebuild in this overlay is one for the amazing **[FontPro](https://github.com/sebschub/FontPro)** package, which extracts the two Adobe fonts **MyriadPro** and **MinionPro** and converts them to LaTeX-usable fonts.
 
-There are currently two ways to install them:
-
-- Using the ebuilds `dev-tex/MyriadPro` and `dev-tex/MinionPro` each standing alone
-- Using the ebuild `dev-tex/fontpro` which uses USE flags to determine which font(s) to install **(recommended)**
+Use the ebuild `dev-tex/fontpro` with appropriate USE flags to determine which font(s) to install.
 
 ## Using this overlay
 
