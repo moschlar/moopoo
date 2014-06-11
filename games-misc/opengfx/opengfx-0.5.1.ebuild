@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/opengfx/opengfx-0.4.7.ebuild,v 1.3 2013/12/24 12:43:28 ago Exp $
+# $Header: $
 
 EAPI=5
 inherit eutils games
@@ -26,8 +26,6 @@ src_prepare() {
 }
 
 src_compile() {
-	# ensure that we will not use gimp to regenerate the pngs
-	# causes sandbox violations and not worth the effort anyway
 	emake bundle
 }
 

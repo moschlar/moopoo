@@ -1,6 +1,12 @@
---- Makefile.old
+Change descriptions (all inspired by games-misc/opengfx-0.4.7):
+
+1. Add the -P flag for GCC 4.8 compatibility
+2. Add the bundle make target again
+3. Disable PNG regeneration with GIMP because it "causes sandbox violations and not worth the effort anyway"
+
+--- Makefile
 +++ Makefile
-@@ -184,11 +184,11 @@
+@@ -184,7 +184,7 @@
  
  %.nml: %.pnml
  	$(_E) "[CPP] $@"
@@ -9,35 +15,6 @@
  
  clean::
  	$(_E) "[CLEAN NML]"
--	$(_V)-rm -rf $(NML_FILES)
-+	$(_V) -rm -rf $(NML_FILES)
- 
- nml: $(NML_FILES)
- # else
-@@ -272,7 +272,7 @@
- 
- clean::
- 	$(_E) "[CLEAN LNG]"
--	$(_V)-rm -rf custom_tags.txt custom_tags.txt.cache
-+	$(_V) -rm -rf custom_tags.txt custom_tags.txt.cache
- 
- ################################################################
- # grf - specific rules
-@@ -303,10 +303,10 @@
- 
- clean::
- 	$(_E) "[CLEAN GRF]"
--	$(_V)-rm -rf $(GRF_FILES)
--	$(_V)-rm -rf $(GRF_FILES).cache
--	$(_V)-rm -rf $(GRF_FILES).cacheindex
--	$(_V)-rm -rf parsetab.py
-+	$(_V) -rm -rf $(GRF_FILES)
-+	$(_V) -rm -rf $(GRF_FILES).cache
-+	$(_V) -rm -rf $(GRF_FILES).cacheindex
-+	$(_V) -rm -rf parsetab.py
- 
- maintainer-clean::
- 	$(_E) "[MAINTAINER-CLEAN GRF]"
 @@ -395,6 +395,8 @@
  	$(_E) "[CLEAN GRFID]"
  	$(_V) -rm -f $(MD5_FILENAME)
@@ -47,17 +24,7 @@
  # Bundle directory
  $(DIR_NAME): $(BUNDLE_FILES)
  	$(_E) "[BUNDLE] $@"
-@@ -478,7 +480,7 @@
- ifneq ("$(strip $(HG))",":")
- $(DIR_NAME_SRC): $(MD5_SRC_FILENAME) Makefile.fordist
- 	$(_E) "[ASSEMBLING] $(DIR_NAME_SRC)"
--	$(_V)-rm -rf $@
-+	$(_V) -rm -rf $@
- 	$(_V) mkdir $@
- 	$(_V) cp $(CP_FLAGS) $(MD5_SRC_FILENAME) $(DIR_NAME_SRC)
- 	$(_V) cp $(CP_FLAGS) Makefile.fordist $@/Makefile.dist
-
---- Makefile.config.old
+--- Makefile.config
 +++ Makefile.config
 @@ -36,7 +36,7 @@
  
