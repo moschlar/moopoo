@@ -1,0 +1,70 @@
+--- Makefile.old
++++ Makefile
+@@ -184,11 +184,11 @@
+ 
+ %.nml: %.pnml
+ 	$(_E) "[CPP] $@"
+-	$(_V) $(CC) -D REPO_REVISION=$(NEWGRF_VERSION) -D NEWGRF_VERSION=$(NEWGRF_VERSION) $(CC_USER_FLAGS) $(CC_FLAGS) -o $@ $<
++	$(_V) $(CC) -P -D REPO_REVISION=$(NEWGRF_VERSION) -D NEWGRF_VERSION=$(NEWGRF_VERSION) $(CC_USER_FLAGS) $(CC_FLAGS) -o $@ $<
+ 
+ clean::
+ 	$(_E) "[CLEAN NML]"
+-	$(_V)-rm -rf $(NML_FILES)
++	$(_V) -rm -rf $(NML_FILES)
+ 
+ nml: $(NML_FILES)
+ # else
+@@ -272,7 +272,7 @@
+ 
+ clean::
+ 	$(_E) "[CLEAN LNG]"
+-	$(_V)-rm -rf custom_tags.txt custom_tags.txt.cache
++	$(_V) -rm -rf custom_tags.txt custom_tags.txt.cache
+ 
+ ################################################################
+ # grf - specific rules
+@@ -303,10 +303,10 @@
+ 
+ clean::
+ 	$(_E) "[CLEAN GRF]"
+-	$(_V)-rm -rf $(GRF_FILES)
+-	$(_V)-rm -rf $(GRF_FILES).cache
+-	$(_V)-rm -rf $(GRF_FILES).cacheindex
+-	$(_V)-rm -rf parsetab.py
++	$(_V) -rm -rf $(GRF_FILES)
++	$(_V) -rm -rf $(GRF_FILES).cache
++	$(_V) -rm -rf $(GRF_FILES).cacheindex
++	$(_V) -rm -rf parsetab.py
+ 
+ maintainer-clean::
+ 	$(_E) "[MAINTAINER-CLEAN GRF]"
+@@ -395,6 +395,8 @@
+ 	$(_E) "[CLEAN GRFID]"
+ 	$(_V) -rm -f $(MD5_FILENAME)
+ 
++bundle: $(DIR_NAME)
++
+ # Bundle directory
+ $(DIR_NAME): $(BUNDLE_FILES)
+ 	$(_E) "[BUNDLE] $@"
+@@ -478,7 +480,7 @@
+ ifneq ("$(strip $(HG))",":")
+ $(DIR_NAME_SRC): $(MD5_SRC_FILENAME) Makefile.fordist
+ 	$(_E) "[ASSEMBLING] $(DIR_NAME_SRC)"
+-	$(_V)-rm -rf $@
++	$(_V) -rm -rf $@
+ 	$(_V) mkdir $@
+ 	$(_V) cp $(CP_FLAGS) $(MD5_SRC_FILENAME) $(DIR_NAME_SRC)
+ 	$(_V) cp $(CP_FLAGS) Makefile.fordist $@/Makefile.dist
+
+--- Makefile.config.old
++++ Makefile.config
+@@ -36,7 +36,7 @@
+ 
+ # Uncomment in order to make use of gimp scripting. See the file
+ # for a description of the format
+-GFX_SCRIPT_LIST_FILES      := sprites/png/terrain/waterfeatures/waterfeatures.xcf2png sprites/png/infrastructure/locks.xcf2png sprites/png/terrain/terrain.xcf2png sprites/png/trees/trees.xcf2png sprites/png/industries/coalmine.xcf2png sprites/png/industries/goldmine/goldmine.xcf2png sprites/png/industries/oilwell/oilwell.xcf2png
++#GFX_SCRIPT_LIST_FILES      := sprites/png/terrain/waterfeatures/waterfeatures.xcf2png sprites/png/infrastructure/locks.xcf2png sprites/png/terrain/terrain.xcf2png sprites/png/trees/trees.xcf2png sprites/png/industries/coalmine.xcf2png sprites/png/industries/goldmine/goldmine.xcf2png sprites/png/industries/oilwell/oilwell.xcf2png
+ 
+ # If needed, declare the minimum NML requirements
+ # REQUIRED_NML_BRANCH  = 0.3
