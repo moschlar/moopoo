@@ -1,0 +1,11 @@
+--- Makefile.in~	2014-10-03 10:15:03.420498696 +0200
++++ Makefile.in	2014-10-03 10:15:45.004280796 +0200
+@@ -362,7 +362,7 @@
+ 	help \
+ 	$(NULL)
+ 
+-californiadocdir = ${prefix}/doc/california
++californiadocdir = ${docdir}
+ californiadoc_DATA = \
+ 	ChangeLog \
+ 	README \
