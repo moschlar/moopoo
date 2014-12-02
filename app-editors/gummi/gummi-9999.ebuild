@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=4
-inherit autotools base eutils git-r3
+inherit autotools base eutils git-r3 gnome2-utils
 
 EGIT_REPO_URI="git://github.com/aitjcize/${PN}.git"
 
@@ -39,7 +39,12 @@ src_prepare() {
 }
 
 pkg_postinst() {
+	gnome2_icon_cache_update
 	elog "Gummi >=0.4.8 supports spell-checking through gtkspell. Support for"
 	elog "additional languages can be added by installing myspell-** packages"
 	elog "for your language of choice."
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
