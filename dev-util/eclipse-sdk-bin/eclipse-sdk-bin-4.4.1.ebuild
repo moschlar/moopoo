@@ -10,7 +10,7 @@ inherit eutils
 
 SV=standard
 SN=luna
-SR=R
+SR=SR1
 SRC_BASE="http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/${SN}/${SR}/eclipse-${SV}-${SN}-${SR}-linux-gtk"
 
 DESCRIPTION="Eclipse SDK"
