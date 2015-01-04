@@ -6,7 +6,7 @@ EAPI=5
 
 inherit eutils
 
-DESCRIPTION="Intelligent Python IDE with unique code assistance and analysis"
+DESCRIPTION="Intelligent Python IDE with unique code assistance and analysis (Community Edition)"
 HOMEPAGE="http://www.jetbrains.com/pycharm/"
 SRC_URI="http://download.jetbrains.com/python/${P}.tar.gz"
 
@@ -30,5 +30,5 @@ src_install() {
 
 	dosym /opt/${PN}/bin/pycharm.sh /usr/bin/${PN}
 	newicon "bin/${MY_PN}.png" ${PN}.png
-	make_desktop_entry ${PN} "${PN}" "${PN}"
+	make_desktop_entry ${PN} "PyCharm ${PV} Community Edition" "${PN}"
 }
