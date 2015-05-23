@@ -18,7 +18,7 @@ IUSE=""
 
 DEPEND=">=dev-libs/glib-2.3.2
 	sys-apps/util-linux
-	dev-libs/libelf
+	dev-libs/elfutils
 	dev-libs/json-glib
 	dev-python/sphinx
 	"
