@@ -16,13 +16,12 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=">=dev-libs/glib-2.3.2
+RDEPEND=">=dev-libs/glib-2.3.2
 	sys-apps/util-linux
 	dev-libs/elfutils
-	dev-libs/json-glib
-	dev-python/sphinx
-	"
-RDEPEND="${DEPEND}"
+	dev-libs/json-glib"
+DEPEND="${RDEPEND}
+	dev-python/sphinx"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-check_git_rev.patch"
