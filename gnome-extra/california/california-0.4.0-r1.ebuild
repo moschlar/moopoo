@@ -36,6 +36,7 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-eds.patch"
 	vala_src_prepare
 	gnome2_src_prepare
 }
