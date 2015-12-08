@@ -8,8 +8,7 @@ inherit eutils scons-utils
 
 DESCRIPTION="rmlint finds space waste and other broken things on your filesystem and offers to remove it"
 HOMEPAGE="http://rmlint.readthedocs.org/"
-SRC_URI="https://github.com/sahib/rmlint/archive/v2.2.0.tar.gz"
-#SRC_URI="https://github.com/sahib/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/sahib/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
