@@ -8,8 +8,8 @@ inherit eutils scons-utils
 
 DESCRIPTION="rmlint finds space waste and other broken things on your filesystem and offers to remove it"
 HOMEPAGE="http://rmlint.readthedocs.org/"
-SRC_URI="https://github.com/sahib/rmlint/archive/v2.2.0.tar.gz"
-#SRC_URI="https://github.com/sahib/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+#SRC_URI="https://github.com/sahib/rmlint/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/sahib/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -23,9 +23,9 @@ RDEPEND=">=dev-libs/glib-2.3.2
 DEPEND="${RDEPEND}
 	dev-python/sphinx"
 
-src_prepare() {
-	epatch "${FILESDIR}/${P}-check_git_rev.patch"
-}
+#src_prepare() {
+#	epatch "${FILESDIR}/${PN}-check_git_rev.patch"
+#}
 
 src_configure() {
 	myesconsargs=(
