@@ -1,0 +1,12 @@
+--- main.py~	2016-01-06 22:44:01.321463002 +0100
++++ main.py	2016-01-06 22:44:23.336737974 +0100
+@@ -7,6 +7,9 @@
+ @license: MIT (see LICENSE.txt) - THIS PROGRAM COMES WITH NO WARRANTY
+ """
+ 
++import wxversion
++wxversion.select("3.0")
++
+ # import general python modules
+ import StringIO
+ import logging
