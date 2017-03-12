@@ -8,18 +8,18 @@ DESCRIPTION="Seafile desktop client"
 HOMEPAGE="https://github.com/haiwen/seafile-client/ http://www.seafile.com/"
 SRC_URI="https://github.com/haiwen/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="Apache-2"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="shibboleth"
 
 RDEPEND="net-libs/libsearpc
-    =net-libs/ccnet-${PV}
-    =net-misc/seafile-${PV}
-    >=dev-libs/libevent-2.0
-    >=dev-libs/jansson-2.0
-    dev-libs/openssl:0
-    dev-db/sqlite:3
+	=net-libs/ccnet-${PV}
+	=net-misc/seafile-${PV}
+	>=dev-libs/libevent-2.0
+	>=dev-libs/jansson-2.0
+	dev-libs/openssl:0
+	dev-db/sqlite:3
 
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
