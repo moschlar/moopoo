@@ -18,7 +18,7 @@ RDEPEND="net-libs/libsearpc
 	=net-misc/seafile-${PV}
 	>=dev-libs/libevent-2.0
 	>=dev-libs/jansson-2.0
-	dev-libs/openssl:0
+	dev-libs/openssl:0=
 	dev-db/sqlite:3
 
 	dev-qt/qtcore:5
@@ -26,20 +26,17 @@ RDEPEND="net-libs/libsearpc
 	dev-qt/qtwidgets:5
 	dev-qt/qtnetwork:5
 	dev-qt/qtdbus:5
-	shibboleth? ( || ( dev-qt/qtwebkit:5 dev-qt/qtwebengine:5[widgets] ) )"
+	shibboleth? ( || ( dev-qt/qtwebengine:5[widgets] dev-qt/qtwebkit:5 ) )"
 DEPEND="${RDEPEND}
 	dev-qt/linguist-tools:5"
 
-CMAKE_MIN_VERSION=2.8.9
-CMAKE_BUILD_TYPE=Release
-
 src_prepare() {
+	cmake-utils_src_prepare
 	if use shibboleth ; then
 		if ! has_version "dev-qt/qtwebengine:5[widgets]" ; then
 			sed -i -e 's/IF(WIN32 OR DETECTED_QT_VERSION VERSION_LESS 5.6.0)/IF(TRUE)/' CMakeLists.txt || die
 		fi
 	fi
-	default
 }
 
 src_configure() {

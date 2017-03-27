@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_{6,7} )
+PYTHON_COMPAT=( python2_7 )
 inherit autotools python-single-r1 vcs-snapshot
 
 DESCRIPTION="A simple C language RPC framework"
@@ -13,6 +13,7 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.26.0
@@ -21,7 +22,7 @@ RDEPEND="${DEPEND}
 	dev-python/simplejson[${PYTHON_USEDEP}]"
 
 src_prepare() {
-	sed -i -e "s/(DESTDIR)//" ${PN}.pc.in || die
 	default
+	sed -i -e "s/(DESTDIR)//" ${PN}.pc.in || die
 	eautoreconf
 }
