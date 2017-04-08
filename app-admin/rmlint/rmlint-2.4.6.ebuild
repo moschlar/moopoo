@@ -1,10 +1,9 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=6
 
-inherit eutils scons-utils
+inherit gnome2-utils scons-utils
 
 DESCRIPTION="rmlint finds space waste and other broken things on your filesystem and offers to remove it"
 HOMEPAGE="http://rmlint.readthedocs.org/"
@@ -35,4 +34,17 @@ src_compile() {
 
 src_install() {
 	escons "${MYSCONS[@]}" install
+	rm "${D}/usr/share/glib-2.0/schemas/gschemas.compiled"
+}
+
+pkg_preinst() {
+	gnome2_schemas_savelist
+}
+
+pkg_postinst() {
+	gnome2_schemas_update
+}
+
+pkg_prerm() {
+	gnome2_schemas_update
 }
