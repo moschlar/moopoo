@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/corebird/corebird-0.8.ebuild,v 1.1 2014/07/30 14:31:51 dlan Exp $
 
 EAPI=5
 
@@ -34,7 +33,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-fix-am-prog-valac-0.34.patch"
+	epatch "${FILESDIR}/${PN}-fix-am-prog-valac-0.34.patch"
 	sed -i -e "/manpagedir/s/manpagedir.*/&\/man1/g" data/Makefile.am || die
 	autotools-utils_src_prepare
 	gnome2_src_prepare
