@@ -1,0 +1,32 @@
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 8335839..3a7c443 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -28,13 +28,8 @@ TESTS = \
+ 	utils \
+ 	bundlehistory \
+ 	usercounter \
+-	inlinemediadownloader \
+-	tweetparsing \
+-	filters \
+ 	texttransform \
+-	avatardownload \
+ 	friends \
+-	highlighting \
+ 	avatarcache
+ 
+ check_PROGRAMS = $(TESTS)
+@@ -45,13 +40,8 @@ tests_VALASOURCES = \
+ 	utils.vala \
+ 	bundlehistory.vala \
+ 	usercounter.vala \
+-	inlinemediadownloader.vala \
+-	tweetparsing.vala \
+-	filters.vala \
+ 	texttransform.vala \
+-	avatardownload.vala \
+ 	friends.vala \
+-	highlighting.vala \
+ 	avatarcache.vala
+ 
+ $(tests_VALASOURCES:.vala=.c): tests_vala.stamp

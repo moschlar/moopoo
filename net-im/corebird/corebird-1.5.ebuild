@@ -40,6 +40,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-fix-am-prog-valac-0.34.patch"
+	epatch "${FILESDIR}/${PN}-skip-tests-needing-x.patch"
 	sed -i -e "/manpagedir/s/manpagedir.*/&\/man1/g" data/Makefile.am || die
 	autotools-utils_src_prepare
 	gnome2_src_prepare
