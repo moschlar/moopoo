@@ -42,10 +42,8 @@ src_install() {
 
 pkg_postinst() {
 	xdg_desktop_database_update
-	default
 }
 
 pkg_postrm() {
 	xdg_desktop_database_update
-	default
 }
