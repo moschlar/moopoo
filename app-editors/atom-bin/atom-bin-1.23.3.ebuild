@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit unpacker
+inherit unpacker xdg-utils
 
 DESCRIPTION="A hackable text editor for the 21st Century"
 HOMEPAGE="https://atom.io/"
@@ -38,4 +38,14 @@ src_unpack() {
 
 src_install() {
 	cp -a "${S}/usr" "${D}/"
+}
+
+pkg_postinst() {
+	xdg_desktop_database_update
+	default
+}
+
+pkg_postrm() {
+	xdg_desktop_database_update
+	default
 }
